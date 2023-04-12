@@ -149,8 +149,7 @@ class genome
             if ( DNA_p2[i] == a[0])
             {
                 if(DNA_p2.substr(i , a.length()) == a)
-                    {
-                    for (int j = 0 ; j < a.length(); j++)
+                {    
                     {
                         begin_p2 = i;
                     } 
@@ -186,8 +185,8 @@ class genome
             }
             DNA_p2.insert(begin_p2,mokamel_b);
         }
-    
     }
+
     void reverse_jahesh_RNA(string a)//jaheshe makoos
     {
         for( int i = 0 ; i< RNA.length() ; i++)
@@ -206,14 +205,7 @@ class genome
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-};
+}
     void reverse_jahesh_DNA(string a)
     {
         int begin_p1 = 0;
@@ -357,13 +349,238 @@ class cell
         
     }
 
-    void big_rejahesh();
+    void big_rejahesh(string a,int m,string b,int n)
+    {
+        cout<< "ENTER S1, NUMBER OF CHRO1, S2, NUMBER OF CHRO2"<< endl;
+        cin>> a; 
+        cin>> m;
+        cout<< "s1: " << a<< "in chrom number: " << m<< endl;
+        cin>> b;
+        cin>> n;
+        cout<< "s2: " << b<< "in chrom number: " << n<< endl;
+        int begin_p1_chro = 0;
+        int begin_p2_chro = 0;
+        for(int i=0; i<DNA_p1_chro[m].length(); i++)
+        {
+            
+            if ( DNA_p1_chro[m][i] == a[0])
+            {
+                if(DNA_p1_chro[m].substr(i, a.length()) == a)
+                {
+                    begin_p1_chro = i;
+                }
+            }
+        }
+        for( int i = 0 ; i< DNA_p2_chro[m].length() ; i++)
+        {
+            if ( DNA_p2_chro[m][i] == a[0])
+            {
+                if(DNA_p2_chro[m].substr(i , a.length()) == a)
+                    {
+                    
+                        begin_p2_chro = i;
+                    
+                    }
+            }
+        }
+        if(begin_p1_chro > begin_p2_chro )
+        {
+            DNA_p2_chro[m].erase(begin_p2_chro,a.length());
 
-    void small_rejahesh();
+            DNA_p2_chro[m].insert(begin_p2_chro,b);
+        }
+    
+        else
+        {
+            DNA_p1_chro[m].erase(begin_p1_chro,a.length());
 
-    void rereverse();
+            DNA_p1_chro[m].insert(begin_p1_chro,b);
+        }
 
-    void pal_mok();
+        for(int i=0; i<DNA_p1_chro[n].length(); i++)
+        {
+            
+            if ( DNA_p1_chro[n][i] == b[0])
+            {
+                if(DNA_p1_chro[n].substr(i, b.length()) == b)
+                {
+                    begin_p1_chro = i;
+                }
+            }
+        }
+        for( int i = 0 ; i< DNA_p2_chro[n].length() ; i++)
+        {
+            if ( DNA_p2_chro[n][i] == b[0])
+            {
+                if(DNA_p2_chro[n].substr(i , b.length()) == b)
+                    {
+                    
+                        begin_p2_chro = i;
+                    
+                    }
+            }
+        }
+        if(begin_p1_chro > begin_p2_chro )
+        {
+            DNA_p2_chro[n].erase(begin_p2_chro,b.length());
+
+            DNA_p2_chro[n].insert(begin_p2_chro,a);
+        }
+    
+        else
+        {
+            DNA_p1_chro[n].erase(begin_p1_chro,b.length());
+
+            DNA_p1_chro[n].insert(begin_p1_chro,a);
+        }
+    }
+
+    void small_rejahesh(char a ,char b ,int n , int m )
+    {
+        int test = 0;
+        for (int i = 0 ; i<DNA_p1_chro[m].length() ; i++)
+        {
+
+            if (DNA_p1_chro[m][i] == a)
+            {
+                test++;
+                DNA_p1_chro[m][i] = b;
+                DNA_p2_chro[m][i] = mokamel[b];    
+
+            }     
+            if (test == n)
+            {
+                break;
+            }
+            if(DNA_p2_chro[m][i] == a)
+            {
+                test ++;
+                DNA_p2_chro[m][i] = b;
+                DNA_p1_chro[m][i] = mokamel[b];
+            }
+        
+            if (test == n)
+            {
+                break;
+            }
+        }
+    }
+
+    void rereverse(string a , int n)
+    {
+        int begin_p1_chro = 0;
+        int begin_p2_chro = 0;
+        for( int i = 0 ; i< DNA_p1_chro[n].length() ; i++)
+        {
+            if ( DNA_p1_chro[n][i] == a[0])
+            {
+                if(DNA_p1_chro[n].substr(i , a.length()) == a)
+                {
+                    begin_p1_chro = i;
+                }
+            }
+        }
+        for( int i = 0 ; i< DNA_p2_chro[n].length() ; i++)
+        {
+            if ( DNA_p2_chro[n][i] == a[0])
+            {
+                if(DNA_p2_chro[n].substr(i , a.length()) == a)
+                    {
+                    for (int j = 0 ; j < a.length(); j++)
+                    {
+                        begin_p2_chro = i;
+                    } 
+                }
+            }
+        }
+        if(begin_p1_chro>begin_p2_chro)
+        {
+            DNA_p2_chro[n].erase(begin_p2_chro,a.length());
+            reverse(a.begin(), a.end()); 
+            DNA_p2_chro[n].insert(begin_p2_chro,a);
+            DNA_p1_chro[n].erase(begin_p2_chro,a.length());
+
+            string mokamel_a = a;
+            for(int k = 0 ; k<a.length() ; k++)
+            {
+                mokamel_a[k] = mokamel[a[k]];
+
+            }
+            DNA_p1_chro[n].insert(begin_p2_chro,mokamel_a);
+        }
+    
+        else
+        {
+            DNA_p1_chro[n].erase(begin_p1_chro,a.length());
+            reverse(a.begin(), a.end()); 
+            DNA_p1_chro[n].insert(begin_p1_chro,a);
+            DNA_p2_chro[n].erase(begin_p1_chro,a.length());
+
+            string mokamel_a = a;
+            for(int k = 0 ; k<a.length() ; k++)
+            {
+                mokamel_a[k] = mokamel[a[k]] ;
+
+            }
+            DNA_p2_chro[n].insert(begin_p2_chro,mokamel_a);
+        }
+    
+    }
+
+    void pal_mok()
+    {   
+        string rev_d;
+        string pal;
+        string mok_d;
+        string a;
+        for(int j = 0 ; j<n_chro ; j++)
+        {
+            for(int i = 0 ; i<DNA_p1_chro[j].length();i++)
+            {
+                a = DNA_p1_chro[j];
+                for(int k = 3 ; k<a.length() ; k++)
+                {
+                    pal = a.substr(i , k);
+                    mok_d = a.substr(i , k);
+                    for (int d = 0 ; d<mok_d.length() ; d++)
+                    {
+                        mok_d[d] = mokamel[mok_d[d]];
+                    }    
+                    reverse(mok_d.begin(), mok_d.end());
+                    if(mok_d == pal)
+                    {
+                        cout<<"pal: "<<pal<<endl;
+                    }
+                        
+                } 
+            } 
+        }
+    
+        for(int j = 0 ; j<n_chro ; j++)
+        {
+            for(int i = 0 ; i<DNA_p2_chro[j].length();i++)
+            {
+                a = DNA_p2_chro[j];
+                for(int k = 3 ; k<a.length() ; k++)
+                {
+                    pal = a.substr(i , k);
+                    mok_d = a.substr(i , k);
+                    for (int d = 0 ; d<mok_d.length() ; d++)
+                    {
+                        mok_d[d] = mokamel[mok_d[d]];
+                    }    
+                    reverse(mok_d.begin(), mok_d.end());
+                    if(mok_d == pal)
+                    {
+                        cout<<"pal: "<<pal<<endl;
+                    }
+                        
+                } 
+            } 
+        }
+    
+    
+    }
 
 };
 
