@@ -1,10 +1,10 @@
 #include<iostream>
 #include<map>
+#include<cstdlib>
 #include<vector>
 #include<string>
 #include <algorithm> 
 using namespace std;
-
 
 class cell;
 class genome
@@ -585,8 +585,125 @@ class cell
 };
 
 
+class animal{
+	private:
+		friend class cell ;
+	
+	public :
+	     double Tashaboh_Persentage	(vector <string> S1 , vector <string> S2){
+	     	int check = S1.size() - S2.size() ;
+	     	int moshabeh ;
+	     	double persentage ;
+	     	if (check >= 0 ) {
+	     		for (int k = 0 ; k < S2.size() ; k ++){
+	     			if (S1[k] == S2[k]){
+	     				moshabeh +=1 ;
+					}
+				}
+				persentage = (moshabeh *100.0) / S1.size() ;
+			}
+			else {
+				for (int k = 0 ; k < S1.size() ; k ++){
+	     			if (S1[k] == S2[k]){
+	     				moshabeh +=1 ;
+					}
+				}
+				persentage = (moshabeh *100.0) / S2.size() ;
+			}
+			return persentage ;
+		}
+		
+		bool Tashkhise_Gune (vector <string> S1 , vector <string> S2){
+			if(S1.size() == S2.size()  &&  Tashaboh_Persentage(S1 , S2) >= 70){
+				return true ;
+			}
+			else {
+				return false ;
+			}
+		}
+         
+         
+
+        void No_Sexual (vector <string> S1 ){
+            vector <string> Bache = S1 ;
+            int first = 7 ;
+            int random = 7 + (rand() %4) ;
+            int change = 10 - random ;
+            char a[4] = {'A' , 'T' , 'C' , 'G'} ;
+            for(int i = change ; i >0 ; i--){
+            	Bache.pop_back() ;
+			}
+            for ( int j = 0 ; j < Bache.size() ; j++){
+            	cout << Bache[j] << endl ;
+			}
+            for(int i = 0 ; i < change ; i++){
+                string s3 = "";
+                for(int j = 0 ; j < 20 ; j++){
+                    s3+= a[rand() %4] ;
+                }
+                Bache.push_back(s3) ;
+                
+
+            }
+            for ( int j = 0 ; j < Bache.size() ; j++){
+            	cout << Bache[j] << endl ;
+			}
+
+
+        }
+        
+        void Sexual (vector <string>  S1 , vector <string> S2){
+        	if (Tashkhise_Gune(S1 , S2)){
+        		if(S1.size() % 2 == 0){
+        			vector <string> Bache ;
+        			int random1 = rand() %S1.size() ;
+        			int random2 = rand() %S1.size() ;
+        			for(int i = 0 ; i< S1.size() /2 ; i++){
+        				if(random1 >= S1.size()){
+        					random1 -= S1.size();
+						}
+						if(random2 >= S1.size()){
+        					random2 -= S1.size();
+						}
+						Bache.push_back(S1[random1]) ;
+						Bache.push_back(S2[random2]) ;
+						random1 ++ ;
+						random2 ++ ;
+					}
+					for(int i = 0 ; i< Bache.size() ; i++){
+				        cout << Bache[i] << endl ;
+			        }
+				}
+				
+			}
+			
+		}
+		
+		
+		
+};
+
+
 
 int main()
 {
-    
+	animal a ;
+    vector <string> s1 ;
+    s1.push_back("TTTTTTTTTTT") ;
+    s1.push_back("AAAAAAAAAA") ;
+    s1.push_back("WWWWWWWWWW") ;
+    s1.push_back("EEEEEEEEEE");
+    s1.push_back("HGSHGSHDSHDG");
+    s1.push_back("ystdsydgshdgshjdg");
+    vector <string> s2  ;
+    s2.push_back("TTTTTTTTTTT") ;
+    s2.push_back("AAAAAAAAAA") ;
+    s2.push_back("WWWWWWWWWW") ;
+    s2.push_back("EEEEEEEEEz");
+    s2.push_back("HGSHGSHDSHDG");
+    s2.push_back("ystdsydgshdgshjdg");
+//    cout << a.Tashaboh_Persentage(s1 , s2 );
+//    cout <<endl << a.Tashkhise_Gune(s1,s2);
+//      a.No_Sexual(s1);
+      a.Sexual(s1 , s2 );
 }
