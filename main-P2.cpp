@@ -583,10 +583,3 @@ class cell
     }
 
 };
-
-
-
-int main()
-{
-    
-}
