@@ -664,7 +664,3 @@ class cell
 
 
 
-int main()
-{
-
-}
