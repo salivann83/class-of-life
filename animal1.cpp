@@ -146,3 +146,116 @@ class animal{
 		}		
 };
 
+
+int main(){
+  for(int i = 0 ; i <= 20 ; i++){
+    cout << "enter number" << endl ; 
+  cout <<"1_genome" << endl << "2_cell" << endl << "3_animal" << endl ;
+  int w ;
+  cin >> w ;
+    if(w==1){
+      genome g ;
+      g.get_gen() ;
+      cout << "what do you want to do ?" << endl << "1_make dna" << endl <<"2_small jahesh" << endl << "3_big jahesh" << endl<< "4_reverse jahesh"<<endl ;
+      int d ;
+      cin >> d ;
+      if(d==1){
+        string rna ;
+          cout << "enter rna" ;
+          cin >> rna ;
+          g.make_dna(rna);
+      }
+      else if (d==2){
+        char a , b ;
+               int n ;
+               cin >> a >> b >> n ;
+               g.small_jahesh_DNA(a,b,n);
+             
+      }
+      else if (d == 3){
+        string s1 , s2 ;
+            cin >> s1 , s2;
+            g.big_jahesh_DNA(s1,s2);
+          
+      }
+      else if(d== 4){
+        string s3 ;
+            cin >> s3 ;
+            g.reverse_jahesh_DNA(s3);
+      }
+    }
+      
+    else if (w == 2){
+      cell c ;
+      c.get_gen_chro();
+      cout << "what do you want to do ?"<< endl << "1_big rejahesh" << endl << "2_small rejahesh" << endl << "3_reverse jahesh" << endl << "4_palindrome" << endl ;
+      int d2 ;
+      cin >> d2 ;
+      if(d2==1){
+        string a , b ;
+          int m , n ;
+          cin >> a >> b >> m >> n ;
+          c.big_rejahesh(a,m,b,n);
+      }
+      else if (d2 == 2){
+        char a , b ;
+               int n,m ;
+               cin >> a >> b >> n >> m ;
+             c.small_rejahesh(a,b,n,m);
+      }
+      else if (d2 == 3 ){
+        string a ;
+            int n ;
+            cin >> a >> n ;
+            c.rereverse(a,n);
+      }
+      else if (d2 == 4){
+        c.pal_mok();
+      }
+    }
+      
+                 
+      
+    else if (w==3){
+      cout << "what do you want to do ?" << endl << "1_darsad tashaboh"<< endl << "2_gune yabi " << "3_tolid mesl qeyr jensi" << endl << "4_tolid mesle jensi" << endl ;
+       int d3 ;
+       cin >> d3 ;
+       animal a1 ;
+       if(d3==1){
+           cell c1 ;
+           cell c2 ;
+           c1.get_gen_chro();
+           c2.get_gen_chro() ;
+           cout << a1.Tashaboh_Persentage(c1,c2);
+       }
+           
+         else if (d3 == 2){
+           cell c11;
+           cell c12 ;
+           c11.get_gen_chro();
+           c12.get_gen_chro() ;
+            cout << a1.Tashkhise_Gune(c11,c12);
+      } 
+             
+        else if (d3 == 3){
+          cell c3 ;
+        c3.get_gen_chro();
+        animal a(c3);
+           a1.No_Sexual(a);
+          
+      }
+        
+      else if (d3==4){
+          cell c4;
+          cell c5 ;
+        c4.get_gen_chro() ;
+        c5.get_gen_chro() ;
+        animal b(c4) ;
+        animal c(c5);
+        a1.Sexual(b,c);     
+       }
+    }
+         
+  }
+  
+}
